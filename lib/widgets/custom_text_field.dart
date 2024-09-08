@@ -12,10 +12,10 @@ class CustomTextField extends StatelessWidget {
   });
 
   final String hint;
-  Function(String)? onChanged;
+  final Function(String)? onChanged;
   final bool flag;
   final int maxLines;
- TextInputType? textInputType;
+  final TextInputType? textInputType;
 
   @override
   Widget build(BuildContext context) {
