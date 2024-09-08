@@ -15,16 +15,14 @@ class CustomButton extends StatelessWidget {
         width: MediaQuery.of(context).size.width,
         height: 55,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
-          color: kPrimaryColor
-        ),
+            borderRadius: BorderRadius.circular(8), color: kPrimaryColor),
         child: Center(
           child: Text(
-            title , 
+            title,
             style: TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.bold,
-              fontSize: 18
+              fontSize: 18,
             ),
           ),
         ),

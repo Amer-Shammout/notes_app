@@ -26,4 +26,3 @@ class NotesViewBody extends StatelessWidget {
     );
   }
 }
-
