@@ -6,6 +6,7 @@ class NotesListView extends StatelessWidget {
     super.key,
   });
 
+  
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -13,7 +14,7 @@ class NotesListView extends StatelessWidget {
         itemCount: 10,
         itemBuilder: (context, index) {
           return Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            padding: const EdgeInsets.symmetric(vertical: 4.0),
             child: CustomNoteItem(title: "title", subTitle: "subTitle"),
           );
         },
