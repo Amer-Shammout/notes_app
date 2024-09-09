@@ -9,22 +9,32 @@ class CustomTextField extends StatelessWidget {
     this.flag = false,
     this.textInputType,
     this.maxLines = 1,
+     this.onSaved,
   });
 
   final String hint;
-  final Function(String)? onChanged;
+  final Function(String)? onChanged; //rem
   final bool flag;
   final int maxLines;
   final TextInputType? textInputType;
+  final void Function(String?)? onSaved;
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
+      onSaved: onSaved,
+      validator: (value){
+        if(value?.isEmpty ?? true){
+          return "Field is required";
+        } else{
+          return null;
+        }
+      },
       cursorColor: kPrimaryColor,
       maxLines: maxLines,
       keyboardType: textInputType,
       obscureText: flag,
-      onChanged: onChanged,
+      onChanged: onChanged, //rem
       decoration: InputDecoration(
         border: buildBorder(),
         enabledBorder: buildBorder(),
