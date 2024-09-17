@@ -42,7 +42,9 @@ class CustomNoteItem extends StatelessWidget {
                 ),
               ),
               trailing: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  note.delete();
+                },
                 icon: const Icon(
                   Icons.delete,
                   color: Colors.black,
@@ -53,7 +55,7 @@ class CustomNoteItem extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(right: 24.0),
               child: Text(
-                "May21 , 2022",
+                note.date,
                 style:
                     TextStyle(color: Colors.black.withOpacity(.4), fontSize: 16),
               ),
