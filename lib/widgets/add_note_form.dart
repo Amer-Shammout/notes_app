@@ -31,7 +31,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
           ),
           CustomTextField(
             hint: 'title',
-            onSaved: (value){
+            onSaved: (value) {
               title = value;
             },
           ),
@@ -41,25 +41,35 @@ class _AddNoteFormState extends State<AddNoteForm> {
           CustomTextField(
             hint: 'subtitle',
             maxLines: 5,
-            onSaved: (value){
+            onSaved: (value) {
               subTitle = value;
             },
           ),
           const SizedBox(
             height: 32,
           ),
-          CustomButton(title: "Add", onTap: () {
-            if(formKey.currentState!.validate()){
-              formKey.currentState!.save();
-              NoteModel note = NoteModel(title: title!, subTitle: subTitle!, date: DateTime.now().toString(), color: Colors.blue.value);
-              BlocProvider.of<AddNoteCubit>(context).addNote(note);
-            } else{
-              autovalidateMode = AutovalidateMode.always;
-              setState(() {
-                
-              });
-            }
-          })
+          BlocBuilder<AddNoteCubit, AddNoteState>(
+            builder: (context, state) {
+              return CustomButton(
+                isLoading: state is AddNoteLoading ? true : false,
+                title: "Add",
+                onTap: () {
+                  if (formKey.currentState!.validate()) {
+                    formKey.currentState!.save();
+                    NoteModel note = NoteModel(
+                        title: title!,
+                        subTitle: subTitle!,
+                        date: DateTime.now().toString(),
+                        color: Colors.blue.value);
+                    BlocProvider.of<AddNoteCubit>(context).addNote(note);
+                  } else {
+                    autovalidateMode = AutovalidateMode.always;
+                    setState(() {});
+                  }
+                },
+              );
+            },
+          ),
         ],
       ),
     );
