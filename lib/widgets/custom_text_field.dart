@@ -13,7 +13,7 @@ class CustomTextField extends StatelessWidget {
   });
 
   final String hint;
-  final Function(String)? onChanged; //rem
+  final Function(String)? onChanged; 
   final bool flag;
   final int maxLines;
   final TextInputType? textInputType;
@@ -34,7 +34,7 @@ class CustomTextField extends StatelessWidget {
       maxLines: maxLines,
       keyboardType: textInputType,
       obscureText: flag,
-      onChanged: onChanged, //rem
+      onChanged: onChanged, 
       decoration: InputDecoration(
         border: buildBorder(),
         enabledBorder: buildBorder(),

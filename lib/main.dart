@@ -35,7 +35,7 @@ class NotesApp extends StatelessWidget {
           NotesView.id: (context) => NotesView(),
           EditNoteView.id: (context) => EditNoteView()
         },
-        home: const NotesView(),
+        home: NotesView(),
       ),
     );
   }

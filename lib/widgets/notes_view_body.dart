@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/cubits/notes_cubit/notes_cubit.dart';
@@ -17,18 +19,23 @@ class _NotesViewBodyState extends State<NotesViewBody> {
     BlocProvider.of<NotesCubit>(context).fetchAllNotes();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 24),
+        padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
-            CustomAppBar(title: "Notes", icon: Icons.search,),
-            SizedBox(
+            CustomAppBar(
+              title: "Notes",
+              icon: Icons.search,
+              onPressed: () {},
+            ),
+            const SizedBox(
               height: 20,
             ),
             NotesListView(),
