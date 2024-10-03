@@ -6,15 +6,14 @@ import 'package:notes_app/views/edit_note_view.dart';
 import 'package:notes_app/widgets/notes_list_view.dart';
 
 class CustomNoteItem extends StatelessWidget {
-  const CustomNoteItem(
-      {super.key, required this.note});
+  const CustomNoteItem({super.key, required this.note});
 
-      final NoteModel note;
+  final NoteModel note;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         Navigator.pushNamed(context, EditNoteView.id, arguments: note);
       },
       child: Container(
@@ -24,8 +23,7 @@ class CustomNoteItem extends StatelessWidget {
           left: 16,
         ),
         decoration: BoxDecoration(
-            color: Color(note.color),
-            borderRadius: BorderRadius.circular(16)),
+            color: Color(note.color), borderRadius: BorderRadius.circular(16)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
@@ -46,14 +44,22 @@ class CustomNoteItem extends StatelessWidget {
               ),
               trailing: IconButton(
                 onPressed: () {
-                  List<NoteModel>?notes =  BlocProvider.of<NotesCubit>(context).notes;
+                  List<NoteModel>? notes =
+                      BlocProvider.of<NotesCubit>(context).notes;
                   int index = notes!.indexOf(note);
                   note.delete();
-                  animatedController.currentState!.removeItem(index, (context,animation){
-                    return SlideTransition(position: animation.drive(Tween<Offset>(
-                  begin: const Offset(1, 0),
-                  end: const Offset(0, 0)
-                ),),child: CustomNoteItem(note: note));
+                  animatedController.currentState!.removeItem(index,
+                      (context, animation) {
+                    return SlideTransition(
+                        position: animation.drive(
+                          Tween<Offset>(
+                              begin: const Offset(1, 0),
+                              end: const Offset(0, 0)),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 4.0),
+                          child: CustomNoteItem(note: note),
+                        ));
                   });
                   BlocProvider.of<NotesCubit>(context).fetchAllNotes();
                 },
@@ -68,8 +74,8 @@ class CustomNoteItem extends StatelessWidget {
               padding: const EdgeInsets.only(right: 24.0),
               child: Text(
                 note.date,
-                style:
-                    TextStyle(color: Colors.black.withOpacity(.4), fontSize: 16),
+                style: TextStyle(
+                    color: Colors.black.withOpacity(.4), fontSize: 16),
               ),
             )
           ],
