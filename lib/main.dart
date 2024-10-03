@@ -32,10 +32,10 @@ class NotesApp extends StatelessWidget {
             fontFamily: GoogleFonts.poppins().fontFamily),
         initialRoute: NotesView.id,
         routes: {
-          NotesView.id: (context) => NotesView(),
-          EditNoteView.id: (context) => EditNoteView()
+          NotesView.id: (context) => const NotesView(),
+          EditNoteView.id: (context) => const EditNoteView()
         },
-        home: NotesView(),
+        home: const NotesView(),
       ),
     );
   }

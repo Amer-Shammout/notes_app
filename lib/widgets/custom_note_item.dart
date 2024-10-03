@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/cubits/notes_cubit/notes_cubit.dart';
 import 'package:notes_app/models/note_model.dart';
 import 'package:notes_app/views/edit_note_view.dart';
+import 'package:notes_app/widgets/notes_list_view.dart';
 
 class CustomNoteItem extends StatelessWidget {
   const CustomNoteItem(
@@ -45,7 +46,15 @@ class CustomNoteItem extends StatelessWidget {
               ),
               trailing: IconButton(
                 onPressed: () {
+                  List<NoteModel>?notes =  BlocProvider.of<NotesCubit>(context).notes;
+                  int index = notes!.indexOf(note);
                   note.delete();
+                  animatedController.currentState!.removeItem(index, (context,animation){
+                    return SlideTransition(position: animation.drive(Tween<Offset>(
+                  begin: const Offset(1, 0),
+                  end: const Offset(0, 0)
+                ),),child: CustomNoteItem(note: note));
+                  });
                   BlocProvider.of<NotesCubit>(context).fetchAllNotes();
                 },
                 icon: const Icon(

@@ -4,6 +4,9 @@ import 'package:notes_app/cubits/notes_cubit/notes_cubit.dart';
 import 'package:notes_app/models/note_model.dart';
 import 'package:notes_app/widgets/custom_note_item.dart';
 
+final GlobalKey<AnimatedListState>animatedController = GlobalKey();
+final ScrollController scrollController = ScrollController();
+
 class NotesListView extends StatelessWidget {
   const NotesListView({
     super.key,
@@ -15,12 +18,17 @@ class NotesListView extends StatelessWidget {
       builder: (context, state) {
         List<NoteModel>notes = BlocProvider.of<NotesCubit>(context).notes ?? [];
         return Expanded(
-          child: ListView.builder(
-            itemCount: notes.length,
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 4.0),
-                child: CustomNoteItem(note: notes[index],),
+          child: AnimatedList(
+            controller: scrollController,
+            key: animatedController,
+            initialItemCount: notes.length,
+            itemBuilder: (context, index,animation) {
+              return SizeTransition(
+                sizeFactor: animation,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 4.0),
+                  child: CustomNoteItem(note: notes[index],),
+                ),
               );
             },
           ),
@@ -29,3 +37,5 @@ class NotesListView extends StatelessWidget {
     );
   }
 }
+
+
